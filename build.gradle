@@ -24,6 +24,7 @@ dependencies {
     compile group: 'io.qameta.allure', name: 'allure-gradle', version: '2.8.1'
 }
 
+def passed, failed, skipped
 test {
     useTestNG() {
         suites 'src/test/resources/suite1.xml'
@@ -31,8 +32,11 @@ test {
     testLogging {
         afterSuite { desc, result ->
             if (!desc.parent) { // will match the outermost suite
-                println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                passed = result.successfulTestCount
+                failed = result.failedTestCount
+                skipped = result.skippedTestCoun
             }
+            println "Results: ${result.resultType} (${result.testCount} tests, ${passed} successes, ${failed} failures, ${skipped} skipped)"
         }
     }
 }
