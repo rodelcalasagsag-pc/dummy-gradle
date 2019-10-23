@@ -1,3 +1,5 @@
+import hudson.tasks.test.AbstractTestResultAction
+
 pipeline {
     agent any
     stages {
@@ -14,15 +16,18 @@ pipeline {
         stage("Generate Allure Report") {
             steps {
                 allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
-                sleep 1
-                bat "gradlew.bat allureReport"
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'build/reports/allure-report', reportFiles: 'index.html', reportName: 'Allure Report', reportTitles: ''])
             }
         }
-        stage("Report stats"){
-            steps{
-                echo currentBuild.currentResult
+        stage("Report stats") {
+            steps {
+                echo printResult()
             }
         }
     }
+}
+
+def printResult(){
+    final AbstractTestResultAction result = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
+    def isNull = result == null
+    return isNull.toString()
 }
