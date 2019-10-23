@@ -34,7 +34,7 @@ test {
             if (!desc.parent) { // will match the outermost suite
                 passed = result.successfulTestCount
                 failed = result.failedTestCount
-                skipped = result.skippedTestCoun
+                skipped = result.skippedTestCount
                 println "Results: ${result.resultType} (${result.testCount} tests, ${passed} successes, ${failed} failures, ${skipped} skipped)"
             }
         }
