@@ -35,8 +35,8 @@ test {
                 passed = result.successfulTestCount
                 failed = result.failedTestCount
                 skipped = result.skippedTestCoun
+                println "Results: ${result.resultType} (${result.testCount} tests, ${passed} successes, ${failed} failures, ${skipped} skipped)"
             }
-            println "Results: ${result.resultType} (${result.testCount} tests, ${passed} successes, ${failed} failures, ${skipped} skipped)"
         }
     }
 }
