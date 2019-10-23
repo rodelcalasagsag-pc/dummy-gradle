@@ -26,6 +26,7 @@ pipeline {
     }
 }
 
+@NonCPS
 def printResult(){
     final AbstractTestResultAction result = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
     def isNull = result == null
