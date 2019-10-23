@@ -14,8 +14,9 @@ repositories {
 }
 
 allure {
-    version = '2.8.1'
+    version = '2.13.0'
     autoconfigure = true
+    aspectjweaver = false
 }
 
 dependencies {
