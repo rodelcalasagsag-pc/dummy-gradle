@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "io.qameta.allure" version "2.8.1"
+//    id "io.qameta.allure" version "2.8.1"
 }
 
 group 'au.com.petcircle.rodel'
@@ -13,16 +13,16 @@ repositories {
     jcenter()
 }
 
-allure {
-    version = '2.13.0'
-    autoconfigure = true
-    aspectjweaver = false
-}
+//allure {
+//    version = '2.13.0'
+//    autoconfigure = true
+//    aspectjweaver = false
+//}
 
 dependencies {
 //    testCompile group: 'org.testng', name: 'testng', version: '7.0.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'io.qameta.allure', name: 'allure-gradle', version: '2.8.1'
+//    compile group: 'io.qameta.allure', name: 'allure-gradle', version: '2.8.1'
 }
 
 def passed, failed, skipped
@@ -31,6 +31,7 @@ test {
 //        suites 'src/test/resources/suite1.xml'
 //    }
     testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
         afterSuite { desc, result ->
             if (!desc.parent) { // will match the outermost suite
                 passed = result.successfulTestCount
