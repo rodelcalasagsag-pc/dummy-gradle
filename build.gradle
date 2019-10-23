@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.8.1"
+}
+
+group 'au.com.petcircle.rodel'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    aspectjweaver = false
+    allureJavaVersion = '2.8.1'
+}
+
+dependencies {
+    testCompile group: 'org.testng', name: 'testng', version: '7.0.0'
+    compile group: 'io.qameta.allure', name: 'allure-gradle', version: '2.8.1'
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/suite1.xml',
+                'src/test/resources/suite2.xml'
+    }
+}
