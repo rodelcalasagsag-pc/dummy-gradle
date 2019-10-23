@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage("Stage 1") {
+        stage("Clean") {
             steps {
-                bat "java -version"
+                bat "gradlew.bat clean"
+            }
+        }
+        stage("Test") {
+            steps {
+                bat "gradlew.bat test"
             }
         }
     }
