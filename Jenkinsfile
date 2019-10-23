@@ -19,5 +19,10 @@ pipeline {
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'build/reports/allure-report', reportFiles: 'index.html', reportName: 'Allure Report', reportTitles: ''])
             }
         }
+        stage("Report stats"){
+            steps{
+                echo currentBuild.currentResult
+            }
+        }
     }
 }
