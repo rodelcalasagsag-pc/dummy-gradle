@@ -1,5 +1,5 @@
 class Main {
-    static void main(String... args) {
+    static void main(Object... args) {
         args.each {
             println it
         }
