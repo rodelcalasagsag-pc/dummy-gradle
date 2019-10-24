@@ -8,25 +8,28 @@ pipeline {
                 bat "gradlew.bat clean"
             }
         }
-        stage("Test") {
+        stage("Run Suite 1") {
             steps {
-                bat "gradlew.bat test"
+                try {
+                    bat "gradlew.bat test -Psuite1"
+                } finally {
+                    allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
+                }
             }
         }
-        stage("Generate Allure Report") {
+        stage("Run Suite 2") {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
-            }
-        }
-        stage("Report stats") {
-            steps {
-                echo printResult()
+                try {
+                    bat "gradlew.bat test -Psuite2"
+                } finally {
+                    allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
+                }
             }
         }
     }
 }
 
-def printResult(){
+def printResult() {
     final AbstractTestResultAction result = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
     def isNull = result == null
     return isNull.toString()
