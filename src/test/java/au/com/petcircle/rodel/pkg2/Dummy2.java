@@ -1,14 +1,12 @@
-package au.com.petcircle.rodel.pkg1;
+package au.com.petcircle.rodel.pkg2;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Random;
-
-public class Dummy {
+public class Dummy2 {
 
     @Test()
-    public void test1() {
+    public void test2() {
         Assert.assertTrue(true, "MY ASSERTION FAILED!!");
     }
 }
