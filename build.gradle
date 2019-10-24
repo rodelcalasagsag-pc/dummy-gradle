@@ -27,15 +27,9 @@ dependencies {
 def passed, failed, skipped
 test {
     useTestNG() {
-        if (project.hasProperty('suite1')){
-            suites 'src/test/resources/suite1.xml'
-        }
-        if (project.hasProperty('suite2')){
-            suites 'src/test/resources/suite2.xml'
-        }
+        suites 'src/test/resources/suite1.xml'
     }
     testLogging {
-        events "passed", "failed", "skipped"
         afterSuite { desc, result ->
             if (!desc.parent) { // will match the outermost suite
                 passed = result.successfulTestCount
